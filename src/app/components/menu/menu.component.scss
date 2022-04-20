@@ -1,0 +1,50 @@
+$grey: #ccc;
+$purple: rgb(93, 63, 211);
+
+.menu-body {
+  width: 100%;
+
+  .menu-header {
+    border-bottom: 1px solid #ccc;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0;
+      padding-left: 14px;
+    }
+  }
+
+  .menu-container {
+    padding-top: 0;
+
+    .menu-item {
+      height: 100px;
+      cursor: pointer;
+      border-bottom: 1px solid $grey;
+
+      .menu-icon {
+        box-sizing: border-box;
+        color: $grey;
+      }
+
+      &.menu-item-active {
+        background: rgba(93, 63, 211, 0.2);
+
+        .menu-icon {
+          box-sizing: border-box;
+          color: $purple;
+        }
+
+        .menu-name {
+          color: $purple;
+        }
+      }
+    }
+
+    .menu-description {
+      font-size: 12px;
+      white-space: normal;
+    }
+  }
+}

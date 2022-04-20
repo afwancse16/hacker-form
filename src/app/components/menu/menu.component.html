@@ -1,0 +1,17 @@
+<div class="menu-body">
+  <div class="menu-header" mat-subheader>
+    <h1>Settings</h1>
+  </div>
+  <mat-list class="menu-container">
+    <mat-list-item
+      class="menu-item"
+      *ngFor="let list of menuList"
+      [ngClass]="{ 'menu-item-active': list.path === currentUrl }"
+      (click)="changeForm(list.path)"
+    >
+      <mat-icon mat-list-icon class="menu-icon">{{ list.icon }}</mat-icon>
+      <div mat-line class="menu-name">{{ list.name }}</div>
+      <div mat-line class="menu-description">{{ list.description }}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,144 @@
+<div class="form-container">
+  <h2>Plan & Billing</h2>
+  <form #form="ngForm" [formGroup]="planForm" novalidate>
+    <!-- plan section -->
+    <div class="form-section">
+      <div mat-line class="form-name">Change your plan</div>
+      <div mat-line class="form-description">
+        Upgrade or downgrade your current plan
+      </div>
+
+      <div class="form-info">
+        <mat-icon matPrefix>info</mat-icon>
+        <p>
+          Changing the plan will take place immediately. You will be charged for
+          the rest of the current month.
+        </p>
+      </div>
+
+      <app-plan-list
+        [currentPlan]="planForm.get('plan')?.value"
+        (cardSelected)="selectCard($event)"
+      ></app-plan-list>
+    </div>
+
+    <!-- card info -->
+    <div class="form-section">
+      <div mat-line class="form-name">Payment Details</div>
+      <div mat-line class="form-description">
+        Update your billing information. Make sure to set your location
+        correctly as it could affect your tax rates.
+      </div>
+
+      <div class="form-group">
+        <label for="cardholdername">Card holder</label>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            id="cardholdername"
+            formControlName="cardholdername"
+            placeholder="Enter your name"
+          />
+
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row form-card">
+        <div class="form-group">
+          <label for="cardnumber">Card number</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="cardnumber"
+              formControlName="cardnumber"
+              placeholder="Enter your card number"
+              ccNumber
+            />
+            <mat-icon matPrefix>credit_card</mat-icon>
+            <mat-error *ngIf="planForm.get('cardnumber')?.hasError('ccNumber')">
+              Please enter a valid card number
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="expdate">Expiration Date</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="expdate"
+              formControlName="expdate"
+              placeholder="MM/YY"
+              ccExp
+            />
+            <mat-icon matPrefix>calendar_today</mat-icon>
+            <mat-error *ngIf="!planForm.get('expdate')?.valid">
+              Please enter a valid expiration date
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVC/CVC2</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="cvv"
+              formControlName="cvv"
+              placeholder="CVV"
+              ccCvc
+            />
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-error *ngIf="!planForm.get('cvv')?.valid">
+              Please enter a valid cvc/cvc2
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="country">Country</label>
+          <mat-form-field appearance="outline">
+            <mat-icon matPrefix>location_on</mat-icon>
+            <mat-select formControlName="country">
+              <mat-option
+                [value]="country.name"
+                *ngFor="let country of countryList$ | async"
+                >{{ country.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="postalcode">ZIP / Postal code</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="postalcode"
+              formControlName="postalcode"
+              placeholder="Enter your zip code"
+            />
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- button -->
+    <div class="form-button">
+      <button mat-flat-button (click)="resetForm()">Reset</button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="saveForm()"
+        [disabled]="!planForm.valid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

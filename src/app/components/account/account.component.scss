@@ -1,0 +1,22 @@
+@import "../../shared/scss/form-styles.scss";
+
+.form-container {
+  .form-username {
+    ::ng-deep {
+      .mat-form-field-infix {
+        padding: 0;
+        padding-bottom: 1em;
+        padding-left: 5px;
+      }
+
+      .mat-form-field-flex {
+        padding: 0;
+      }
+    }
+
+    button {
+      background-color: rgba(145, 178, 199, 0.2);
+      font-weight: 900;
+    }
+  }
+}

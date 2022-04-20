@@ -1,0 +1,16 @@
+.container {
+  width: 1024px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+
+  .menu {
+    width: 30%;
+  }
+
+  .form-body {
+    width: 70%;
+    padding: 20px 45px;
+    background-color: rgba(145, 178, 199, 0.2);
+  }
+}

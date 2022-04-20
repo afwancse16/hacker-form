@@ -1,0 +1,19 @@
+@import "../../shared/scss/form-styles.scss";
+
+.form-container {
+  .form-name {
+    margin-bottom: 20px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .form-label {
+      h4 {
+        font-weight: 900;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
